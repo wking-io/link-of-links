@@ -1,0 +1,3 @@
+<div class="phx-hero">
+  <h2>Link Single Page - <%= @id %></h2>
+</div>
