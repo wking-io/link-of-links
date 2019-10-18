@@ -18,8 +18,14 @@ defmodule LolWeb.Router do
 
     get "/", PageController, :index
     get "/login", LoginController, :index
-    get "/dashboard", LinkController, :index
-    get "/link/:id", LinkController, :show
+    resources "/links", LinkController
+  end
+
+  scope "/auth", LolWeb do
+    pipe_through :browser
+
+    get "/:provider", SessionController, :request
+    get "/:provider/callback", SessionController, :callback
   end
 
   # Other scopes may use custom stacks.

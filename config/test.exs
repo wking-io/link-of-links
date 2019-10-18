@@ -4,7 +4,7 @@ use Mix.Config
 config :lol, Lol.Repo,
   username: "postgres",
   password: "postgres",
-  database: "lol_test",
+  database: "linkoflinks_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
