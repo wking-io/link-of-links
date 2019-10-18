@@ -1,3 +1,5 @@
-<div class="phx-hero">
-  <h2>Link New Page</h2>
-</div>
+<h1>New Link</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.link_path(@conn, :create)) %>
+
+<span><%= link "Back", to: Routes.link_path(@conn, :index) %></span>
