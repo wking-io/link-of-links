@@ -6,36 +6,35 @@ defmodule Lol.Accounts do
   import Ecto.Query, warn: false
   alias Lol.Repo
 
-  alias Lol.Accounts.User
+  alias Lol.Schemas.User
 
   @doc """
-  Returns the list of users.
-
-  ## Examples
-
-      iex> list_users()
-      [%User{}, ...]
-
+  Fetches a user by id.
   """
-  def list_users do
-    Repo.all(User)
+  @spec get_user_by_id(String.t()) :: {:ok, User.t()} | {:error, String.t()}
+  def get_user_by_id(id) do
+    case Repo.get(User, id) do
+      %User{} = user ->
+        {:ok, user}
+
+      _ ->
+        {:error, dgettext("errors", "User not found")}
+    end
   end
 
   @doc """
-  Gets a single user.
-
-  Raises `Ecto.NoResultsError` if the User does not exist.
-
-  ## Examples
-
-      iex> get_user!(123)
-      %User{}
-
-      iex> get_user!(456)
-      ** (Ecto.NoResultsError)
-
+  Fetches a user by email.
   """
-  def get_user!(id), do: Repo.get!(User, id)
+  @spec get_user_by_email(String.t()) :: {:ok, User.t()} | {:error, String.t()}
+  def get_user_by_email(email) do
+    case Repo.get_by(User, %{email: email}) do
+      %User{} = user ->
+        {:ok, user}
+
+      _ ->
+        {:error, dgettext("errors", "User not found")}
+    end
+  end
 
   @doc """
   Creates a user.

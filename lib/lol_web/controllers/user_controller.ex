@@ -52,7 +52,7 @@ defmodule LolWeb.UserController do
 
   def update(conn, %{"id" => id, "user" => user_params}) do
     user = Accounts.get_user!(id)
-    update_base(conn, ${user: user, params: user_params})
+    update_base(conn, %{user: user, params: user_params})
   end
 
   def delete(conn, %{"id" => id}) do

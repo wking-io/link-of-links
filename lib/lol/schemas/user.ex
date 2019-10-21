@@ -1,6 +1,12 @@
-defmodule Lol.Accounts.User do
+defmodule Lol.Schemas.User do
+  @moduledoc """
+  The User Schema
+  """
+
   use Ecto.Schema
   import Ecto.Changeset
+
+  @type t :: %__MODULE__{}
 
   schema "users" do
     field :email, :string
